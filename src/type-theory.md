@@ -56,13 +56,13 @@ $\lambda$` x:T.t`  lambda abstraction
 `t` $\times$ `t`   product
 `fst t`            first projection
 `snd t`            second projection
-`t + t`            sum
+`t + t`            sum <!--- TODO: is this right? --->
 `left t`           left tag
 `right t`          right tag
 `1`                unit
 
 Lambda abstractions are anonymous functions that take one argument.
-If you want a function that takes multiple arguments, you have to build it from several lambdas, like $lambda$`x.`$lambda$`y.x y`, which applies its second argument to its first. 
+If you want a function that takes multiple arguments, you have to build it from several lambdas, like $\lambda$`x.`$\lambda$`y.x y`, which applies its second argument to its first. 
 (This is called [function currying](https://en.wikipedia.org/wiki/Currying).)
 A product term is like a struct or class with two members, `fst` and `snd`.
 Sum terms are a tagged union, where the value is either `left` or `right`. 
