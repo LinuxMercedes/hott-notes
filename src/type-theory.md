@@ -102,6 +102,22 @@ We collect these types together to form a basis for making typing decisions.
 They're mostly there for mathematical rigor, but sometimes their contents will be important to us.
 Sometimes we don't need to know anything to make a typing decision, which is what the empty context indicates.
 
+Okay, so we've got a bunch of ways to write various terms and types. 
+Let's talk about what we can do with these things. 
+To do this, we need to introduce a few pieces of notation:
+
+$\Gamma \vdash \mathsf{x:T}$ indicates that under the type assumptions in $\Gamma$, $\mathsf{x}$ has type $\mathsf{T}$.
+
+$\frac{\mathrm{Premises}}{\mathrm{Conclusion}}$ indicates that if we assume $\mathrm{Premises}$, we can conclude $\mathrm{Conclusion}$.
+(This is just a nice visual way of writing the process by which we derive the type for various things.)
+
+First off, we have some rules for introducing new terms. 
+
+Syntax              Name
+------              ----
+$\bar{\Gamma}$
+
+
 - Basics of type theory: how to express statements in types, etc
 - Non-capturing substitution
 - Constructive logic
