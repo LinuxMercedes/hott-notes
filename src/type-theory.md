@@ -47,55 +47,55 @@ Terms have types; contexts store the information about which term has which type
 So, what are terms? 
 They come in a few forms:
 
-Syntax             Name
--------            -----
-`t`                term
-`x`                variable
-$\lambda$` x:T.t`  lambda abstraction
-`t t`              application
-`t` $\times$ `t`   product
-`fst t`            first projection
-`snd t`            second projection
-`t + t`            sum <!--- TODO: is this right? --->
-`left t`           left tag
-`right t`          right tag
-`1`                unit
+Syntax                          Name
+-------                         -----
+$\mathsf{t}$                    term
+$\mathsf{x}$                    variable
+$\lambda\mathsf{x:T.t}$         lambda abstraction
+$\mathsf{t t}$                  application
+$\mathsf{t}\times \mathsf{t}$   product
+$\mathsf{fst t}$                first projection
+$\mathsf{snd t}$                second projection
+$\mathsf{t + t}$                sum <!--- TODO: is this right? --->
+$\mathsf{left t}$               left tag
+$\mathsf{right t}$              right tag
+$\mathsf{1}$                    unit
 
 Lambda abstractions are anonymous functions that take one argument.
-If you want a function that takes multiple arguments, you have to build it from several lambdas, like $\lambda$`x.`$\lambda$`y.x y`, which applies its second argument to its first. 
+If you want a function that takes multiple arguments, you have to build it from several lambdas, like $\lambda\mathsf{x.}\lambda\mathsf{y.x y}$, which applies its second argument to its first. 
 (This is called [function currying](https://en.wikipedia.org/wiki/Currying).)
-A product term is like a struct or class with two members, `fst` and `snd`.
-Sum terms are a tagged union, where the value is either `left` or `right`. 
+A product term is like a struct or class with two members, $\mathsf{fst}$ and $\mathsf{snd}$.
+Sum terms are a tagged union, where the value is either $\mathsf{left}$ or $\mathsf{right}$. 
 Rust's `Result` type and Haskell's `Either` type are both examples of sum types. 
 
-You may have noticed the `x:T` in our lambda abstraction form.
-Here, `:` is the typing operator and `T` is a type. 
-We can apply `:` to any form to specify its type explicitly. 
+You may have noticed the $\mathsf{x:T}$ in our lambda abstraction form.
+Here, $\mathsf{:}$ is the typing operator and $\mathsf{T}$ is a type. 
+We can apply $\mathsf{:}$ to any form to specify its type explicitly. 
 
 Types also have specific forms:
 
-Syntax                 Name
-------                 -----
-`T`                    type
-`1`                    unit type
-`0`                    void type
-`T`$\rightarrow$`T`    function type
-`T1`$\times$`T2`       product type
-`T1 + T2`              sum type
+Syntax                                 Name
+------                                 -----
+$\mathsf{T}$                           type
+$\mathsf{1}$                           unit type
+$\mathsf{0}$                           void type
+$\mathsf{T_1}\rightarrow\mathsf{T_2}$  function type
+$\mathsf{T_1}\times\mathsf{T_2}$       product type
+$\mathsf{T_1}+\mathsf{T_2}$            sum type
 
 We'll try our hardest to avoid ambiguity between the similar forms that sum and product terms and types take. 
-Unit and void types are not commonly seen in practice, but notice that Optional/Nullable things have type `T + 1` (either a value of type T or null/none). 
+Unit and void types are not commonly seen in practice, but notice that Optional/Nullable things have type $\mathsf{T + 1}$ (either a value of type $\mathsf{T}$ or null/none). 
 You may have noticed that void has a type, but no associated term. 
 This is intentional: there is no way to make something with void type. 
 
 Finally, let's talk a little bit about contexts. 
 First, the forms:
 
-Syntax         Name
-------         ----
-$\Gamma$       context
-$\emptyset$    empty context
-$\Gamma$,`x:T` variable typing
+Syntax                 Name
+------                 ----
+$\Gamma$               context
+$\emptyset$            empty context
+$\Gamma,\mathsf{x:T}$  variable typing
 
 Contexts are just a way to collect a bunch of types of various variables.
 We collect these types together to form a basis for making typing decisions. 
@@ -113,10 +113,10 @@ $\frac{\mathrm{Premises}}{\mathrm{Conclusion}}$ indicates that if we assume $\ma
 
 First off, we have some rules for introducing new terms. 
 
-Syntax              Name
-------              ----
-$\bar{\Gamma}$
-
+Syntax                                                                                          Name
+------                                                                                          ----
+$\bar{\Gamma\vdash \mathsf{x:1}}$                                                               Unit introduction
+$\frac{\Gamma,\mathsf{x:T_1}\vdash\mathsf{t:T_2}}{\Gamma\vdash\lambda\mathsf{x:T_1.t:T2}}$      Function introduction
 
 - Basics of type theory: how to express statements in types, etc
 - Non-capturing substitution
