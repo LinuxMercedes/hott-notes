@@ -52,13 +52,14 @@ Syntax                          Name
 $\mathsf{t}$                    term
 $\mathsf{x}$                    variable
 $\lambda\mathsf{x:T.t}$         lambda abstraction
-$\mathsf{t t}$                  application
+$\mathsf{t\ t}$                 application
 $\mathsf{t}\times \mathsf{t}$   product
-$\mathsf{fst t}$                first projection
-$\mathsf{snd t}$                second projection
-$\mathsf{t + t}$                sum <!--- TODO: is this right? --->
-$\mathsf{left t}$               left tag
-$\mathsf{right t}$              right tag
+$\mathsf{fst\ t}$               first projection
+$\mathsf{snd\ t}$               second projection
+$\mathsf{left\ t}$              sum with left value
+$\mathsf{right\ t}$             sum with right value
+$\mathsf{case\ left\ of\ t}$    left sum term
+$\mathsf{case\ right\ of\ t}$   right sum term
 $\mathsf{1}$                    unit
 
 Lambda abstractions are anonymous functions that take one argument.
