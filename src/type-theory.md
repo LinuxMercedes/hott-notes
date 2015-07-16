@@ -116,10 +116,33 @@ $\frac{\mathrm{Premises}}{\mathrm{Conclusion}}$ indicates that if we assume $\ma
 
 First off, we have some rules for introducing new terms. 
 
-Syntax                                                                                          Name
-------                                                                                          ----
-$\bar{\Gamma\vdash \mathsf{x:1}}$                                                               Unit introduction
-$\frac{\Gamma,\mathsf{x:T_1}\vdash\mathsf{t:T_2}}{\Gamma\vdash\lambda\mathsf{x:T_1.t:T2}}$      Function introduction
+Syntax | Name
+------ | ----
+$\bar{\Gamma\vdash \mathsf{x:1}}$ | Unit introduction
+$\frac{\Gamma,\mathsf{x:T_1}\vdash\mathsf{t:T_2}}{\Gamma\vdash\lambda\mathsf{x:T_1.t:T_1\rightarrow T_2}}$ | Function introduction
+$\frac{\Gamma\vdash\mathsf{t_1:T_1}\ \Gamma\vdash\mathsf{t_2:T_2}}{\Gamma\vdash\mathsf{t_1\timest_2:T_1\timesT_2}$ | Product introduction
+$\frac{\Gamma\vdash\mathsf{t_1:T_1}}{\Gamma\vdash\mathsf{left\ t_1:T_1 + T_2}}$ | Sum introduction 1
+$\frac{\Gamma\vdash\mathsf{t_2:T_2}}{\Gamma\vdash\mathsf{right\ t_2:T_1 + T_2}}$ | Sum introduction 2
+
+Introduction rules let us build the type of more complex terms from the types of simple terms.
+We can always make a thing of unit type, since there's only one value to associate it with.
+Function terms are interesting: they say that if we can conclude that a term has type $\mathsf{T_2}$ by assuming a variable has type $\mathsf{T_1}$, we can get rid of that assumption and get a term that maps type $\mathsf{T_1}$ to $\mathsf{T_2}$.
+This process is called lambda abstraction. <!-- it is? -->
+
+Elimination rules are the reverse of introduction rules: they let us take terms with complex types and break them down into terms with simple types.
+
+Syntax | Name
+-------|-----
+$\underline{\Gamma\vdash\mathsf{x:0}}$ | Void elimination
+$\frac{\Gamma\vdash\mathsf{t_1:T_1\rightarrowT_2}\ \Gamma\vdash\mathsf{t_2:T_1}}{\Gamma\vdash\mathsf{t_1\ t_2:T_2}}$ | Function elimination
+$\frac{\Gamma\vdash\mathsf{t:T_1\timesT_2}}{\Gamma\vdash\mathsf{fst\ t:T_1}}$ | Product elimination 1
+$\frac{\Gamma\vdash\mathsf{t:T_1\timesT_2}}{\Gamma\vdash\mathsf{snd\ t:T_2}}$ | Product elimination 2
+$\frac{\Gamma\vdash\mathsf{t:T_1 + T_2}}{\Gamma\vdash\mathsf{case\ left\ of\ t:T_1}}$ | Sum elimination 1
+$\frac{\Gamma\vdash\mathsf{t:T_1 + T_2}}{\Gamma\vdash\mathsf{case\ right\ of\ t:T_2}}$ | Sum elimination 2
+
+The void elimination rule might seem odd, but because we know we can't construct void terms, if we happen across one, we can just get rid of it. 
+
+## Evaluation Rules
 
 - Basics of type theory: how to express statements in types, etc
 - Non-capturing substitution
