@@ -142,8 +142,21 @@ $\frac{\Gamma\vdash\mathsf{t:T_1 + T_2}}{\Gamma\vdash\mathsf{case\ right\ of\ t:
 
 The void elimination rule might seem odd, but because we know we can't construct void terms, if we happen across one, we can just get rid of it. 
 
+One important thing that function elimination glosses over is substitution. 
+$\mathsf{t_1\ t_2}$ ends up always looking something like $\mathsf{(\lambda x.t_1^\prime)\ t_2}$. 
+This latter form gets reduced to $\mathsf{t_1^\prime[x\mapsto t_2]}$ where $\mapsto$ indicates that every place $\mathsf{x}$ appears in $\mathsf{t_1^\prime}$ is replaced with $\mathsf{t_2}$. 
+(A minor detail is that variables in $\mathsf{t_2}$ are renamed if any of them share a name with a variable in $\mathsf{t_1^\prime}$.)
+
+<!--- TODO: examples --->
+
+<!---
+I'll add these in for real if it turns out we need them, but for the meantime they'll bring in a lot more material to cover.
+
 ## Evaluation Rules
 
-- Basics of type theory: how to express statements in types, etc
-- Non-capturing substitution
-- Constructive logic
+We aren't going to deal much with evaluation, but it helps to tie together how the typing rules work out in practice.
+It also introduces a few interesting concepts we'll build parallels for later on.
+
+Syntax | Name
+------ | ----
+--->
