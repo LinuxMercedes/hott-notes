@@ -33,7 +33,7 @@ In case you're wondering what one path being deformed into another looks like, h
 
 The dots are two points in the space, the dotted lines are two paths, and the solid line shows a continuous deformation from one path to another. 
 
-## Typing Rules
+## Type Theory Syntax
 
 Okay, enough about homotopies and decidability. 
 Let's talk about how type theory works a bit. 
@@ -102,6 +102,8 @@ Contexts are just a way to collect a bunch of types of various variables.
 We collect these types together to form a basis for making typing decisions. 
 They're mostly there for mathematical rigor, but sometimes their contents will be important to us.
 Sometimes we don't need to know anything to make a typing decision, which is what the empty context indicates.
+
+## Typing Rules
 
 Okay, so we've got a bunch of ways to write various terms and types. 
 Let's talk about what we can do with these things. 
